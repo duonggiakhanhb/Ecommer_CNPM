@@ -25,7 +25,7 @@ const Products = ({ products, onAddToCart }) => {
 
 const styles = {
   main: {
-    backgroundColor:'#ffffff',
+    backgroundColor: '#fff',
   }
 }
 

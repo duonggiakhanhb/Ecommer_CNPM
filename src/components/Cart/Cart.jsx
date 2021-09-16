@@ -12,7 +12,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderEmptyCart = () => (
     <Typography variant="subtitle1">You have no items in your shopping cart,
-      <Link className={classes.link} to="/">start adding some</Link>!
+      <Link className={classes.link} to="/products">start adding some</Link>!
     </Typography>
   );
 
@@ -38,12 +38,18 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   );
 
   return (
-    <Container>
-      <div className={classes.toolbar} />
+    <Container style={styles.Container}>
+      <div className={classes.toolbar} style={styles.Container}/>
       <Typography className={classes.title} variant="h3" gutterBottom>Your Shopping Cart</Typography>
       { !cart.line_items.length ? renderEmptyCart() : renderCart() }
     </Container>
   );
 };
+
+const styles = {
+  Container: {
+    padding: '0 5em',
+  }
+}
 
 export default Cart;

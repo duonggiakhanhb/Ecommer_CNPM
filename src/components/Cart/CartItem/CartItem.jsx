@@ -11,7 +11,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
   const handleRemoveFromCart = (lineItemId) => onRemoveFromCart(lineItemId);
 
   return (
-    <Card className="cart-item">
+    <Card className="cart-item" style={styles.Card}>
       <CardMedia image={item.media.source} alt={item.name} className={classes.media} />
       <CardContent className={classes.cardContent}>
         <Typography variant="h4">{item.name}</Typography>
@@ -28,5 +28,12 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
     </Card>
   );
 };
+
+const styles = {
+  Card: {
+    borderRadius:10,
+    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+  }
+}
 
 export default CartItem;
