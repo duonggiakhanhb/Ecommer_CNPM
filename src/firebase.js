@@ -16,7 +16,7 @@ const db = app.firestore();
 
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-exports.signInWithGoogle = async () => {
+const signInWithGoogle = async () => {
     try {
         const res = await auth.signInWithPopup(googleProvider);
         const user = res.user;
@@ -38,7 +38,7 @@ exports.signInWithGoogle = async () => {
     }
 };
 
-exports.signInWithEmailAndPassword = async (email, password) => {
+const signInWithEmailAndPassword = async (email, password) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
     } catch (err) {
@@ -47,7 +47,7 @@ exports.signInWithEmailAndPassword = async (email, password) => {
     }
 };
 
-exports.registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password) => {
     try {
         const res = await auth.createUserWithEmailAndPassword(email, password);
         const user = res.user;
@@ -63,7 +63,7 @@ exports.registerWithEmailAndPassword = async (name, email, password) => {
     }
 };
 
-exports.sendPasswordResetEmail = async (email) => {
+const sendPasswordResetEmail = async (email) => {
     try {
         await auth.sendPasswordResetEmail(email);
         alert("Password reset link sent!");
@@ -73,6 +73,16 @@ exports.sendPasswordResetEmail = async (email) => {
     }
 };
 
-exports.logout = () => {
+const logout = () => {
     auth.signOut();
+};
+
+export {
+    auth,
+    db,
+    signInWithGoogle,
+    signInWithEmailAndPassword,
+    registerWithEmailAndPassword,
+    sendPasswordResetEmail,
+    logout,
 };
