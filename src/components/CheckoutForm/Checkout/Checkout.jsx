@@ -16,6 +16,7 @@ import { commerce } from "../../../lib/commerce";
 import AddressForm from "../AddressForm";
 import PaymentForm from "../PaymentForm";
 import useStyles from "./styles";
+import { useSelector } from "react-redux";
 
 const steps = ["Shipping address", "Payment details"];
 
@@ -25,6 +26,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     const [shippingData, setShippingData] = useState({});
     const classes = useStyles();
     const history = useHistory();
+    const email = useSelector((state) => state.email);
 
     const nextStep = () =>
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -56,34 +58,20 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
         nextStep();
     };
 
-    let Confirmation = () =>
-        order.customer ? (
-            <>
-                <div>
-                    <Typography variant="h5">
-                        Thank you for your purchase, {order.customer.firstname}{" "}
-                        {order.customer.lastname}!
-                    </Typography>
-                    <Divider className={classes.divider} />
-                    <Typography variant="subtitle2">
-                        Order ref: {order.customer_reference}
-                    </Typography>
-                </div>
-                <br />
-                <Button
-                    component={Link}
-                    variant="outlined"
-                    type="button"
-                    to="/"
-                >
-                    Back to home
-                </Button>
-            </>
-        ) : (
-            <div className={classes.spinner}>
-                <CircularProgress />
+    let Confirmation = () => (
+        <>
+            <div>
+                <Typography variant="h5">
+                    Thank you for your purchase, {email}
+                </Typography>
+                <Divider className={classes.divider} />
             </div>
-        );
+            <br />
+            <Button component={Link} variant="outlined" type="button" to="/">
+                Back to home
+            </Button>
+        </>
+    );
 
     if (error) {
         Confirmation = () => (
