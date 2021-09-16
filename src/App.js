@@ -2,8 +2,21 @@ import React, { useState, useEffect } from "react";
 import { CssBaseline } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Navbar, Products, Cart, Checkout, HelloWorld, Login, Register, Forgot } from "./components";
+import {
+    Navbar,
+    Products,
+    Cart,
+    Checkout,
+    HelloWorld,
+    Login,
+    Register,
+    Forgot,
+} from "./components";
 import { commerce } from "./lib/commerce";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { reducers } from "./redux/ducks";
+const store = createStore(reducers);
 
 const App = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -75,52 +88,54 @@ const App = () => {
     const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
     return (
-        <Router>
-            <div style={{ display: "flex" }}>
-                <CssBaseline />
-                <Navbar
-                    totalItems={cart.total_items}
-                    handleDrawerToggle={handleDrawerToggle}
-                />
-                <Switch>
-                    <Route exact path="/">
-                        <HelloWorld />
-                    </Route>
-                    <Route exact path="/products">
-                        <Products
-                            products={products}
-                            onAddToCart={handleAddToCart}
-                            handleUpdateCartQty
-                        />
-                    </Route>
-                    <Route exact path="/cart">
-                        <Cart
-                            cart={cart}
-                            onUpdateCartQty={handleUpdateCartQty}
-                            onRemoveFromCart={handleRemoveFromCart}
-                            onEmptyCart={handleEmptyCart}
-                        />
-                    </Route>
-                    <Route exact path="/checkout" >
-                        <Checkout
-                            cart={cart}
-                            order={order}
-                            onCaptureCheckout={handleCaptureCheckout}
-                            error={errorMessage}
-                        />
-                    </Route>
-                    <Route exact path="/login" >
-                        <Login />
-                    </Route>
-                    <Route exact path="/register" >
-                        <Register />
-                    </Route>
-                    <Route exact path="/forgot" >
-                        <Forgot />
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
+        <Provider store={store}>
+            <Router>
+                <div style={{ display: "flex" }}>
+                    <CssBaseline />
+                    <Navbar
+                        totalItems={cart.total_items}
+                        handleDrawerToggle={handleDrawerToggle}
+                    />
+                    <Switch>
+                        <Route exact path="/">
+                            <HelloWorld />
+                        </Route>
+                        <Route exact path="/products">
+                            <Products
+                                products={products}
+                                onAddToCart={handleAddToCart}
+                                handleUpdateCartQty
+                            />
+                        </Route>
+                        <Route exact path="/cart">
+                            <Cart
+                                cart={cart}
+                                onUpdateCartQty={handleUpdateCartQty}
+                                onRemoveFromCart={handleRemoveFromCart}
+                                onEmptyCart={handleEmptyCart}
+                            />
+                        </Route>
+                        <Route exact path="/checkout">
+                            <Checkout
+                                cart={cart}
+                                order={order}
+                                onCaptureCheckout={handleCaptureCheckout}
+                                error={errorMessage}
+                            />
+                        </Route>
+                        <Route exact path="/login">
+                            <Login />
+                        </Route>
+                        <Route exact path="/register">
+                            <Register />
+                        </Route>
+                        <Route exact path="/forgot">
+                            <Forgot />
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
+        </Provider>
     );
 };
 

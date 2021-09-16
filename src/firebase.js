@@ -25,7 +25,6 @@ const signIn = async (email, password) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            // ...
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -37,9 +36,7 @@ const signIn = async (email, password) => {
 const registerWithEmailAndPassword = async (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed in
             const user = userCredential.user;
-            // ...
         })
         .catch((error) => {
             const errorCode = error.code;
