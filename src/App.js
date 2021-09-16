@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CssBaseline } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Navbar, Products, Cart, Checkout, HelloWorld } from "./components";
+import { Navbar, Products, Cart, Checkout, HelloWorld, Login, Register, Forgot } from "./components";
 import { commerce } from "./lib/commerce";
 
 const App = () => {
@@ -101,13 +101,22 @@ const App = () => {
                             onEmptyCart={handleEmptyCart}
                         />
                     </Route>
-                    <Route path="/checkout" exact>
+                    <Route exact path="/checkout" >
                         <Checkout
                             cart={cart}
                             order={order}
                             onCaptureCheckout={handleCaptureCheckout}
                             error={errorMessage}
                         />
+                    </Route>
+                    <Route exact path="/login" >
+                        <Login />
+                    </Route>
+                    <Route exact path="/register" >
+                        <Register />
+                    </Route>
+                    <Route exact path="/forgot" >
+                        <Forgot />
                     </Route>
                 </Switch>
             </div>

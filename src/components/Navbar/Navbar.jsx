@@ -73,8 +73,6 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                                     className={classes.image}
                                 />{" "}
                                 Shopping Cart
-                                <Button>Login</Button>
-                                <Button>Sign In</Button>
                             </div>
                         </Typography>
                         <Typography
@@ -105,6 +103,24 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                             </IconButton>
                         </div>
                     )}
+                    <div style={styles.FormLogin}>
+                        <Typography
+                            component={Link}
+                            to="/login"
+                            variant="h6"
+                            className={classes.title}
+                            color="inherit">
+                            Login
+                        </Typography>
+                        <Typography
+                            component={Link}
+                            to="/register"
+                            variant="h6"
+                            className={classes.title}
+                            color="inherit">
+                            Register    
+                        </Typography>
+                    </div>
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
@@ -117,6 +133,12 @@ const styles = {
         display: "flex",
         flex: 0.4,
     },
+    FormLogin: {
+        display: "flex",
+        flex: 0.2,
+        marginLeft: 0,
+        paddingLeft: 10,
+    }
 };
 
 export default PrimarySearchAppBar;
