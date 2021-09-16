@@ -1,17 +1,17 @@
 import React from "react";
 import {
-    InputLabel,
     Select,
     MenuItem,
     Button,
     Grid,
     Typography,
+    TextField,
 } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import FormInput from "../CheckoutForm/CustomTextField";
-import { auth, registerWithEmailAndPassword } from "../../firebase.js";
+import { registerWithEmailAndPassword } from "../../firebase";
 
 const Register = () => {
     const methods = useForm();
@@ -23,6 +23,8 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(name, email, password);
+
         registerWithEmailAndPassword(name, email, password);
     };
     return (
@@ -32,35 +34,39 @@ const Register = () => {
             </Typography>
             <FormProvider {...methods}>
                 <form style={styles.form} onSubmit={(e) => handleSubmit(e)}>
-                    <FormInput
+                    <TextField
                         required
                         name="username"
                         label="Username"
                         value={name}
-                        onChange={(name) => setName(name)}
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
                     />
-                    <FormInput
+                    <TextField
                         required
-                        name="name"
-                        label="Name"
+                        name="email"
+                        label="Email"
                         value={email}
-                        onChange={(email) => setName(email)}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
                     />
-                    <FormInput
+                    <TextField
                         required
                         name="password"
                         label="Password"
                         value={password}
                         type="password"
-                        onChange={(password) => setPassword(password)}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                    <FormInput
+                    <TextField
                         required
-                        type="submit"
+                        type="password"
                         name="password confirm"
                         label="Password Confirm"
                         value={rePassword}
-                        onChange={(rePassword) => setRePassword(rePassword)}
+                        onChange={(e) => setRePassword(e.target.value)}
                     />
 
                     <br />
