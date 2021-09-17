@@ -37,14 +37,19 @@ export const change_login = (login) => ({
 });
 
 export const userReducer = (state = initialStateUser, action) => {
+    console.log(action.info);
     switch (action.type) {
         case CHANGE_EMAIL:
+            console.log("change email");
             return { ...state, email: action.info };
         case CHANGE_NAME:
+            console.log("change name");
             return { ...state, name: action.info };
         case CHANGE_UID:
+            console.log("change uid");
             return { ...state, uid: action.info };
         case CHANGE_LOGIN:
+            console.log("change login");
             return { ...state, login: action.info };
         default:
             return state;

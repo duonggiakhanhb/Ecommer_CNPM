@@ -3,7 +3,13 @@ import { TextField, Button, Typography } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-import { signInWithEmailAndPassword, auth } from "../../firebase.js";
+import {
+    signInWithEmailAndPassword,
+    auth,
+    db,
+    getDoc,
+    doc,
+} from "../../firebase.js";
 import {
     change_email,
     change_uid,
@@ -26,14 +32,14 @@ const Login = () => {
                 // Signed in
                 const user = userCredential.user;
 
-                // getDoc(collection(db, "user", user.uid)).then((doc) => {
+                getDoc(doc(db, "user", user.uid)).then((doc) => {
+                    let data = doc.data();
+                    dispatch(change_email(email));
+                    dispatch(change_uid(user.uid));
+                    dispatch(change_name(data.name));
+                    dispatch(change_login(true));
+                });
 
-                // })
-
-                dispatch(change_email(email));
-                dispatch(change_uid(user.uid));
-                dispatch(change_name(user.name));
-                dispatch(change_login(true));
                 FlashMessage("Login Success", 3000);
             })
             .catch((error) => {
