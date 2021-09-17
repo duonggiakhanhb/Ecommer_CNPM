@@ -88,58 +88,10 @@ const App = () => {
     const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
     return (
-<<<<<<< HEAD
-        <Router>
-            <div id="flashMessage" style={{position: 'absolute'}}></div>
-            <div style={{ display: "flex" , minHeight: "100vh"}}>
-                <CssBaseline />
-                <Navbar
-                    totalItems={cart.total_items}
-                    handleDrawerToggle={handleDrawerToggle}
-                />
-                <Switch>
-                    <Route exact path="/">
-                        <HelloWorld />
-                    </Route>
-                    <Route exact path="/products">
-                        <Products
-                            products={products}
-                            onAddToCart={handleAddToCart}
-                            handleUpdateCartQty
-                        />
-                    </Route>
-                    <Route exact path="/cart">
-                        <Cart
-                            cart={cart}
-                            onUpdateCartQty={handleUpdateCartQty}
-                            onRemoveFromCart={handleRemoveFromCart}
-                            onEmptyCart={handleEmptyCart}
-                        />
-                    </Route>
-                    <Route exact path="/checkout" >
-                        <Checkout
-                            cart={cart}
-                            order={order}
-                            onCaptureCheckout={handleCaptureCheckout}
-                            error={errorMessage}
-                        />
-                    </Route>
-                    <Route exact path="/login" >
-                        <Login />
-                    </Route>
-                    <Route exact path="/register" >
-                        <Register />
-                    </Route>
-                    <Route exact path="/forgot" >
-                        <Forgot />
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
-=======
         <Provider store={store}>
             <Router>
-                <div style={{ display: "flex" }}>
+            <div id="flashMessage" style={{position: 'absolute'}}></div>
+            <div style={{ display: "flex" , minHeight: "100vh"}}>
                     <CssBaseline />
                     <Navbar
                         totalItems={cart.total_items}
@@ -185,7 +137,6 @@ const App = () => {
                 </div>
             </Router>
         </Provider>
->>>>>>> 9330c15b71d8dc52e3ee9f1ee1f0ee99afa950be
     );
 };
 

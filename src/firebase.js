@@ -26,12 +26,7 @@ const signIn = async (email, password) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-<<<<<<< HEAD
-            FlashMessage("Success", 3000)
-            
-            // ...
-=======
->>>>>>> 9330c15b71d8dc52e3ee9f1ee1f0ee99afa950be
+            FlashMessage("Login Success", 3000)
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -44,13 +39,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-<<<<<<< HEAD
-            
-            
+            FlashMessage("Register Success", 3000)
 
-            // ...
-=======
->>>>>>> 9330c15b71d8dc52e3ee9f1ee1f0ee99afa950be
         })
         .catch((error) => {
             const errorCode = error.code;
