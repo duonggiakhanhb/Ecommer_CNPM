@@ -17,7 +17,36 @@ import { commerce } from "./lib/commerce";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { reducers } from "./redux/ducks";
-const store = createStore(reducers);
+
+const loadState = () => {
+try {
+    const serializedState = localStorage.getItem('state');
+    if(serializedState === null) {
+    return undefined;
+    }
+    return JSON.parse(serializedState);
+} catch (e) {
+    return undefined;
+}
+};
+
+const saveState = (state) => {
+try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+} catch (e) {
+    // Ignore write errors;
+}
+};
+
+const peristedState = loadState();
+console.log(peristedState);
+const store = createStore(reducers, peristedState);
+store.subscribe(() => {
+saveState(store.getState());
+});
+
+
 
 const App = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
