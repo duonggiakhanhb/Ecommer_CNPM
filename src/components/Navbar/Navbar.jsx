@@ -140,7 +140,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
 const styles = {
     navLeft: {
         display: "flex",
-        flex: 0.4,
+        flex: 0.6,
     },
     FormLogin: {
         display: "flex",

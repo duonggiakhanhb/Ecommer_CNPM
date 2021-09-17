@@ -64,8 +64,8 @@ const Register = () => {
                 <form style={styles.form} onSubmit={(e) => handleSubmit(e)}>
                     <TextField
                         required
-                        name="username"
-                        label="Username"
+                        name="name"
+                        label="Name"
                         value={name}
                         onChange={(e) => {
                             setName(e.target.value);
