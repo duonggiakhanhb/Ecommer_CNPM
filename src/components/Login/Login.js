@@ -3,16 +3,33 @@ import { TextField, Button, Typography } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-import FormInput from "../CheckoutForm/CustomTextField";
-import { signIn } from "../../firebase.js";
+import { signInWithEmailAndPassword, auth } from "../../firebase.js";
 import { change_email } from "../../redux/ducks";
 import { useDispatch } from "react-redux";
+import { FlashMessage } from "../../components";
 
 const Login = () => {
     const methods = useForm();
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const dispatch = useDispatch(email);
+
+    const signIn = async (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+
+                // getDoc(collection(db, "user", user.uid)).then((doc) => {
+
+                // })
+                FlashMessage("Login Success", 3000);
+            })
+            .catch((error) => {
+                FlashMessage(error.message, 5000, "/", "error");
+            });
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         signIn(email, password);
