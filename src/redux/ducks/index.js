@@ -13,6 +13,7 @@ const initialStateUser = {
     user,
 };
 
+
 export const CHANGE_EMAIL = "CHANGE_EMAIL";
 export const CHANGE_NAME = "CHANGE_NAME";
 export const CHANGE_UID = "CHANGE_UID";
@@ -58,6 +59,38 @@ export const userReducer = (state = initialStateUser, action) => {
     }
 };
 
+const todo = {
+    id: null,
+    text: null,
+}
+const initialStateTodo = {
+    todo,
+}
+export const CHANGE_TODOID = "CHANGE_TODOID";
+export const CHANGE_TODOTEXT = "CHANGE_TODOTEXT";
+
+export const change_todoid = (id) => ({
+    type: CHANGE_TODOID,
+    info: id,
+});
+export const change_todoText = (text) => ({
+    type: CHANGE_TODOTEXT,
+    info: text,
+});
+
+export const todoReducer = (state = initialStateTodo, action) => {
+    switch (action.type) {
+        case CHANGE_TODOID:
+            return { ...state, text: action.info };
+        case CHANGE_TODOTEXT:
+            return { ...state, id: action.info };
+        default:
+            return state;
+    }
+};
+
+
 export const reducers = combineReducers({
     user: userReducer,
+    todo: todoReducer,
 });

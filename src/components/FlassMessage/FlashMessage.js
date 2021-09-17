@@ -31,9 +31,7 @@ const FlashMessage = (
                 </Snackbar>
                 {setTimeout(() => {
                     setOpen(false);
-                    {
-                        /* if(severity!="error") window.location.reload(); */
-                    }
+                     if(severity!="error") window.location.reload();
                 }, time)}
                 {severity != "error" && !open ? <Redirect to={url} /> : ""}
             </Router>
