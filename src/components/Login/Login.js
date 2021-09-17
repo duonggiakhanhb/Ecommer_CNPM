@@ -5,14 +5,18 @@ import { Link } from "react-router-dom";
 
 import FormInput from "../CheckoutForm/CustomTextField";
 import { signIn } from "../../firebase.js";
+import { change_email } from "../../redux/ducks";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
     const methods = useForm();
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const dispatch = useDispatch(email);
     const handleSubmit = (event) => {
         event.preventDefault();
         signIn(email, password);
+        dispatch(change_email(email));
     };
     return (
         <div style={styles.div}>
