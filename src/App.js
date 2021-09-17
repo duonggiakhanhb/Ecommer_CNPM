@@ -11,6 +11,7 @@ import {
     Login,
     Register,
     Forgot,
+    TodoApp,
 } from "./components";
 import { commerce } from "./lib/commerce";
 import { Provider } from "react-redux";
@@ -27,12 +28,13 @@ const App = () => {
 
     const fetchProducts = async () => {
         const { data } = await commerce.products.list();
-
+        commerce.customer.login('duonggiakhanhb@gmail.com','https://yourwebsite.com/login/callback').then((token) => console.log(token));
         setProducts(data);
     };
 
     const fetchCart = async () => {
         setCart(await commerce.cart.retrieve());
+        
     };
 
     const handleAddToCart = async (productId, quantity) => {
@@ -132,6 +134,9 @@ const App = () => {
                         </Route>
                         <Route exact path="/forgot">
                             <Forgot />
+                        </Route>
+                        <Route exact path="/todo">
+                            <TodoApp /> 
                         </Route>
                     </Switch>
                 </div>

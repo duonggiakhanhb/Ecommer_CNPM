@@ -27,22 +27,6 @@ const app = initializeApp(firebaseApp);
 const auth = getAuth();
 const db = getFirestore();
 
-const signIn = async (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            addDoc(collection(db, user));
-            db.collection("users").doc(user.uid).get();
-            FlashMessage("Login Success", 3000);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            //
-        });
-};
-
 const sendPasswordResetEmail = async (email) => {
     try {
         await auth.sendPasswordResetEmail(email);
@@ -63,7 +47,7 @@ export {
     getDoc,
     doc,
     setDoc,
-    signIn,
+    signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     logout,

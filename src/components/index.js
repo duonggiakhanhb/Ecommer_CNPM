@@ -7,3 +7,4 @@ export { default as Login } from './Login/Login';
 export { default as Register } from './Login/Register';
 export { default as Forgot } from './Login/Forgot';
 export { default as FlashMessage} from './FlassMessage/FlashMessage';
+export { default as TodoApp } from './Todo/TodoApp';
