@@ -4,6 +4,7 @@ const user = {
     name: null,
     email: null,
     uid: null,
+    login: false,
 };
 
 const initialStateUser = {

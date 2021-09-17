@@ -4,7 +4,12 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import { signInWithEmailAndPassword, auth } from "../../firebase.js";
-import { change_email, change_uid, change_name } from "../../redux/ducks";
+import {
+    change_email,
+    change_uid,
+    change_name,
+    change_login,
+} from "../../redux/ducks";
 import { useDispatch } from "react-redux";
 import { FlashMessage } from "../../components";
 
@@ -28,6 +33,7 @@ const Login = () => {
                 dispatch(change_email(email));
                 dispatch(change_uid(user.uid));
                 dispatch(change_name(user.name));
+                dispatch(change_login(true));
                 FlashMessage("Login Success", 3000);
             })
             .catch((error) => {
