@@ -1,11 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { change_todoid, change_todoText } from '../../../redux/ducks';
-import {
-  doc,
-  setDoc,
-  db,
-} from "../../../firebase";
-
 
 function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
@@ -28,9 +21,6 @@ function TodoForm(props) {
       text: input,
     });
     setInput('');
-    setDoc(doc(db, "todos", 1), {
-      text: input,
-    });
   };
 
   return (
