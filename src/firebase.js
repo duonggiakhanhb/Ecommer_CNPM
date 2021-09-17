@@ -26,6 +26,7 @@ const signIn = async (email, password) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            
             FlashMessage("Login Success", 3000)
         })
         .catch((error) => {
