@@ -84,6 +84,15 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                         >
                             Products
                         </Typography>
+                        <Typography
+                            component={Link}
+                            to="/todo"
+                            variant="h6"
+                            className={classes.title}
+                            color="inherit"
+                        >
+                            Todo App
+                        </Typography>
                     </div>
                     <div className={classes.grow} />
                     {location.pathname === "/products" && (
