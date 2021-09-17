@@ -6,3 +6,4 @@ export { default as HelloWorld } from './HelloWorld/HelloWorld';
 export { default as Login } from './Login/Login';
 export { default as Register } from './Login/Register';
 export { default as Forgot } from './Login/Forgot';
+export { default as FlashMessage} from './FlassMessage/FlashMessage';

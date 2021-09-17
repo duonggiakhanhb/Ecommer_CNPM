@@ -76,7 +76,8 @@ const App = () => {
 
     return (
         <Router>
-            <div style={{ display: "flex" }}>
+            <div id="flashMessage" style={{position: 'absolute'}}></div>
+            <div style={{ display: "flex" , minHeight: "100vh"}}>
                 <CssBaseline />
                 <Navbar
                     totalItems={cart.total_items}

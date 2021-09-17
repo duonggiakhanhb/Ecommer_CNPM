@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-
+import { FlashMessage } from "./components";
 const firebaseApp = {
     apiKey: "AIzaSyDpnbqy4EcvyDXjxl32l2m1_XajmJ3VRLM",
     authDomain: "shopping-cart-77b68.firebaseapp.com",
@@ -16,6 +16,7 @@ const firebaseApp = {
     measurementId: "G-PWKSVF1LJZ",
 };
 
+
 const app = initializeApp(firebaseApp);
 const auth = getAuth();
 const db = getFirestore();
@@ -25,6 +26,8 @@ const signIn = async (email, password) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            FlashMessage("Success", 3000)
+            
             // ...
         })
         .catch((error) => {
@@ -39,6 +42,9 @@ const registerWithEmailAndPassword = async (name, email, password) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
+            
+            
+
             // ...
         })
         .catch((error) => {
