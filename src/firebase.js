@@ -4,7 +4,14 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import {
+    getFirestore,
+    collection,
+    doc,
+    addDoc,
+    setDoc,
+    getDoc,
+} from "firebase/firestore";
 import { FlashMessage } from "./components";
 const firebaseApp = {
     apiKey: "AIzaSyDpnbqy4EcvyDXjxl32l2m1_XajmJ3VRLM",
@@ -16,7 +23,6 @@ const firebaseApp = {
     measurementId: "G-PWKSVF1LJZ",
 };
 
-
 const app = initializeApp(firebaseApp);
 const auth = getAuth();
 const db = getFirestore();
@@ -26,26 +32,14 @@ const signIn = async (email, password) => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            FlashMessage("Login Success", 3000)
+            addDoc(collection(db, user));
+            db.collection("users").doc(user.uid).get();
+            FlashMessage("Login Success", 3000);
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             //
-        });
-};
-
-const registerWithEmailAndPassword = async (name, email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            FlashMessage("Register Success", 3000)
-
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
         });
 };
 
@@ -66,8 +60,11 @@ const logout = () => {
 export {
     auth,
     db,
+    getDoc,
+    doc,
+    setDoc,
     signIn,
-    registerWithEmailAndPassword,
+    createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     logout,
 };

@@ -9,9 +9,16 @@ import {
 } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
-
-import FormInput from "../CheckoutForm/CustomTextField";
-import { registerWithEmailAndPassword } from "../../firebase";
+import {
+    doc,
+    setDoc,
+    createUserWithEmailAndPassword,
+    auth,
+    db,
+} from "../../firebase";
+import { FlashMessage } from "../../components";
+import { useDispatch } from "react-redux";
+import { change_name, change_email, change_uid } from "../../redux/ducks";
 
 const Register = () => {
     const methods = useForm();
@@ -20,12 +27,33 @@ const Register = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [rePassword, setRePassword] = React.useState("");
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(name, email, password);
-
-        registerWithEmailAndPassword(name, email, password);
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                const data = {
+                    uid: user.uid,
+                    email: user.email,
+                    name: name,
+                };
+                setDoc(doc(db, "user", user.uid), data)
+                    .then(() => {
+                        dispatch(change_name(name));
+                        dispatch(change_email(email));
+                        dispatch(change_uid(user.uid));
+                        FlashMessage("Register Success", 3000);
+                    })
+                    .catch((e) => {
+                        FlashMessage(e.message, 5000, "/", "error");
+                    });
+            })
+            .catch((error) => {
+                FlashMessage(error.message, 5000, "/", "error");
+            });
     };
     return (
         <div style={styles.div}>
