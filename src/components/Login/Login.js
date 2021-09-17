@@ -4,7 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import { signInWithEmailAndPassword, auth } from "../../firebase.js";
-import { change_email } from "../../redux/ducks";
+import { change_email, change_uid, change_name } from "../../redux/ducks";
 import { useDispatch } from "react-redux";
 import { FlashMessage } from "../../components";
 
@@ -14,7 +14,8 @@ const Login = () => {
     const [password, setPassword] = React.useState("");
     const dispatch = useDispatch(email);
 
-    const signIn = async (email, password) => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
@@ -23,17 +24,15 @@ const Login = () => {
                 // getDoc(collection(db, "user", user.uid)).then((doc) => {
 
                 // })
+
+                dispatch(change_email(email));
+                dispatch(change_uid(user.uid));
+                dispatch(change_name(user.name));
                 FlashMessage("Login Success", 3000);
             })
             .catch((error) => {
                 FlashMessage(error.message, 5000, "/", "error");
             });
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        signIn(email, password);
-        dispatch(change_email(email));
     };
     return (
         <div style={styles.div}>
