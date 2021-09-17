@@ -26,7 +26,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     const [shippingData, setShippingData] = useState({});
     const classes = useStyles();
     const history = useHistory();
-    const email = useSelector((state) => state.email);
+    const email = useSelector((state) => state.user.email);
 
     const nextStep = () =>
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

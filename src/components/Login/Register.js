@@ -18,8 +18,15 @@ import {
 } from "../../firebase";
 import { FlashMessage } from "../../components";
 import { useDispatch } from "react-redux";
-import { change_name, change_email, change_uid } from "../../redux/ducks";
 import { validatePassword, validateEmail, validateLenght, validate } from "../Validation/Validation";
+
+import {
+    change_name,
+    change_email,
+    change_uid,
+    change_login,
+} from "../../redux/ducks";
+
 
 const Register = () => {
     const methods = useForm();
@@ -47,6 +54,7 @@ const Register = () => {
                         dispatch(change_name(name));
                         dispatch(change_email(email));
                         dispatch(change_uid(user.uid));
+                        dispatch(change_login(true));
                         FlashMessage("Register Success", 3000);
                     })
                     .catch((e) => {

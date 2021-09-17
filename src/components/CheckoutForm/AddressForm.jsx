@@ -21,7 +21,7 @@ const AddressForm = ({ checkoutToken, test }) => {
     const [shippingOptions, setShippingOptions] = useState([]);
     const [shippingOption, setShippingOption] = useState("");
     const methods = useForm();
-    const email = useSelector((state) => state.email);
+    const email = useSelector((state) => state.user.email);
     const fetchShippingCountries = async (checkoutTokenId) => {
         const { countries } =
             await commerce.services.localeListShippingCountries(

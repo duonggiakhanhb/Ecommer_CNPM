@@ -14,6 +14,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/commerce.png";
 import useStyles from "./styles";
+import { useSelector } from "react-redux";
 
 const PrimarySearchAppBar = ({ totalItems }) => {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -25,7 +26,8 @@ const PrimarySearchAppBar = ({ totalItems }) => {
     const handleMobileMenuClose = () => setMobileMoreAnchorEl(null);
 
     const mobileMenuId = "primary-search-account-menu-mobile";
-
+    const isLogin = useSelector((state) => state.user.login);
+    const name = useSelector((state) => state.user.name);
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -112,24 +114,50 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                             </IconButton>
                         </div>
                     )}
-                    <div style={styles.FormLogin}>
-                        <Typography
-                            component={Link}
-                            to="/login"
-                            variant="h6"
-                            className={classes.title}
-                            color="inherit">
-                            Login
-                        </Typography>
-                        <Typography
-                            component={Link}
-                            to="/register"
-                            variant="h6"
-                            className={classes.title}
-                            color="inherit">
-                            Register    
-                        </Typography>
-                    </div>
+                    {!isLogin && (
+                        <div style={styles.FormLogin}>
+                            <Typography
+                                component={Link}
+                                to="/login"
+                                variant="h6"
+                                className={classes.title}
+                                color="inherit"
+                            >
+                                Login
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/register"
+                                variant="h6"
+                                className={classes.title}
+                                color="inherit"
+                            >
+                                Register
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                to="/login"
+                                variant="h6"
+                                className={classes.title}
+                                color="inherit"
+                            >
+                                {name}
+                            </Typography>
+                        </div>
+                    )}
+                    {isLogin && (
+                        <div style={styles.FormLogin}>
+                            <Typography
+                                component={Link}
+                                to="/"
+                                variant="h6"
+                                className={classes.title}
+                                color="inherit"
+                            >
+                                {name}
+                            </Typography>
+                        </div>
+                    )}
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
@@ -147,7 +175,7 @@ const styles = {
         flex: 0.2,
         marginLeft: 0,
         paddingLeft: 10,
-    }
+    },
 };
 
 export default PrimarySearchAppBar;
