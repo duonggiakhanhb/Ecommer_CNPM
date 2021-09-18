@@ -177,7 +177,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                                 className={classes.title}
                                 color="inherit"
                             >
-                                (Đăng xuất)
+                                (Logout)
                             </Typography>
                         </div>
                     )}
