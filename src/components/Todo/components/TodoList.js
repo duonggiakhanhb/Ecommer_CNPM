@@ -1,65 +1,67 @@
-import React, { useState } from 'react';
-import TodoForm from './TodoForm';
-import Todo from './Todo';
+import React, { useState } from "react";
+import TodoForm from "./TodoForm";
+import Todo from "./Todo";
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState([]);
 
-  const addTodo = todo => {
-    if (!todo.text || /^\s*$/.test(todo.text)) {
-      return;
-    }
+    const addTodo = (todo) => {
+        if (!todo.text || /^\s*$/.test(todo.text)) {
+            return;
+        }
 
-    const newTodos = [todo, ...todos];
+        const newTodos = [todo, ...todos];
 
-    setTodos(newTodos);
-    console.log(...todos);
-  };
+        setTodos(newTodos);
+        console.log(...todos);
+    };
 
-  const updateTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
+    const updateTodo = (todoId, newValue) => {
+        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+            return;
+        }
 
-    setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
-  };
+        setTodos((prev) =>
+            prev.map((item) => (item.id === todoId ? newValue : item))
+        );
+    };
 
-  const removeTodo = id => {
-    const removedArr = [...todos].filter(todo => todo.id !== id);
+    const removeTodo = (id) => {
+        const removedArr = [...todos].filter((todo) => todo.id !== id);
 
-    setTodos(removedArr);
-  };
+        setTodos(removedArr);
+    };
 
-  const completeTodo = id => {
-    let updatedTodos = todos.map(todo => {
-      if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  };
+    const completeTodo = (id) => {
+        let updatedTodos = todos.map((todo) => {
+            if (todo.id === id) {
+                todo.isComplete = !todo.isComplete;
+            }
+            return todo;
+        });
+        setTodos(updatedTodos);
+    };
 
-  return (
-    <>
-      <h1 style={styles.h1}>What's the Plan for Today?</h1>
-      <TodoForm onSubmit={addTodo} />
-      <Todo
-        todos={todos}
-        completeTodo={completeTodo}
-        removeTodo={removeTodo}
-        updateTodo={updateTodo}
-      />
-    </>
-  );
+    return (
+        <>
+            <h1 style={styles.h1}>Công việc ngày hôm nay?</h1>
+            <TodoForm onSubmit={addTodo} />
+            <Todo
+                todos={todos}
+                completeTodo={completeTodo}
+                removeTodo={removeTodo}
+                updateTodo={updateTodo}
+            />
+        </>
+    );
 }
 
 const styles = {
-  h1:{
-    margin:' 32px 0',
-    color: '#fff',
-    fontSize: '24px',
-  }
-}
+    h1: {
+        margin: " 32px 0",
+        color: "#fff",
+        fontSize: "24px",
+    },
+};
 
 export default TodoList;
