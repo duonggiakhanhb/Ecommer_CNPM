@@ -1,4 +1,5 @@
 import React from 'react';
+import './HelloWorld.css';
 
 
 const HelloWorld = () => {
@@ -23,7 +24,7 @@ const styles = {
         margin: 'auto',
         marginTop: '100px',
         fontSize: '60px',
-        fontFamily: "Heebo, sans-serif",
+        fontFamily: "Gluten, cursive",
     }
 }
 
