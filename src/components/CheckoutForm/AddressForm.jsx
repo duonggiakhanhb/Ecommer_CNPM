@@ -75,7 +75,7 @@ const AddressForm = ({ checkoutToken, test }) => {
     return (
         <>
             <Typography variant="h6" gutterBottom>
-                Địa chỉ giao hàng
+                Shipping address
             </Typography>
             <FormProvider {...methods}>
                 <form
@@ -89,23 +89,31 @@ const AddressForm = ({ checkoutToken, test }) => {
                     )}
                 >
                     <Grid container spacing={3}>
-                        <FormInput required name="firstName" label="Tên" />
-                        <FormInput required name="lastName" label="Họ" />
-                        <FormInput required name="address1" label="Tên đường" />
+                        <FormInput
+                            required
+                            name="firstName"
+                            label="First name"
+                        />
+                        <FormInput required name="lastName" label="Last name" />
+                        <FormInput
+                            required
+                            name="address1"
+                            label="Address line 1"
+                        />
                         <FormInput
                             required
                             name="email"
                             label="Email"
                             value={email}
                         />
-                        <FormInput required name="city" label="Tỉnh/Thành" />
+                        <FormInput required name="city" label="City" />
                         <FormInput
                             required
                             name="zip"
-                            label="Zip / Mã bưu điện"
+                            label="Zip / Postal code"
                         />
                         <Grid item xs={12} sm={6}>
-                            <InputLabel>Quốc gia</InputLabel>
+                            <InputLabel>Shipping Country</InputLabel>
                             <Select
                                 value={shippingCountry}
                                 fullWidth
@@ -126,7 +134,7 @@ const AddressForm = ({ checkoutToken, test }) => {
                             </Select>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <InputLabel>Quận/Huyện</InputLabel>
+                            <InputLabel>Shipping Subdivision</InputLabel>
                             <Select
                                 value={shippingSubdivision}
                                 fullWidth
@@ -147,7 +155,7 @@ const AddressForm = ({ checkoutToken, test }) => {
                             </Select>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <InputLabel>Tùy chọn giao hàng</InputLabel>
+                            <InputLabel>Shipping Options</InputLabel>
                             <Select
                                 value={shippingOption}
                                 fullWidth
@@ -176,14 +184,14 @@ const AddressForm = ({ checkoutToken, test }) => {
                         }}
                     >
                         <Button component={Link} variant="outlined" to="/cart">
-                            Trở về giỏ hàng
+                            Back to Cart
                         </Button>
                         <Button
                             type="submit"
                             variant="contained"
                             color="primary"
                         >
-                            Tiếp theo
+                            Next
                         </Button>
                     </div>
                 </form>
