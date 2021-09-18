@@ -18,7 +18,7 @@ import PaymentForm from "../PaymentForm";
 import useStyles from "./styles";
 import { useSelector } from "react-redux";
 
-const steps = ["Shipping address", "Payment details"];
+const steps = ["Địa chỉ giao hàng", "Chi tiết thanh toán"];
 
 const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     const [checkoutToken, setCheckoutToken] = useState(null);
@@ -62,13 +62,13 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
         <>
             <div>
                 <Typography variant="h5">
-                    Thank you for your purchase, {email}
+                    Cảm ơn bạn đã thanh toán, {email}
                 </Typography>
                 <Divider className={classes.divider} />
             </div>
             <br />
             <Button component={Link} variant="outlined" type="button" to="/">
-                Back to home
+                Trở về trang chủ
             </Button>
         </>
     );
@@ -84,7 +84,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
                     type="button"
                     to="/"
                 >
-                    Back to home
+                    Trở về trang chủ
                 </Button>
             </>
         );
@@ -115,7 +115,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
                     <Typography variant="h4" align="center">
-                        Checkout
+                        Thanh toán
                     </Typography>
                     <Stepper
                         activeStep={activeStep}

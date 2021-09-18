@@ -67,7 +67,7 @@ const PaymentForm = ({
             <Review checkoutToken={checkoutToken} />
             <Divider />
             <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
-                Payment method
+                Phương thức thanh toán
             </Typography>
             <Elements stripe={stripePromise}>
                 <ElementsConsumer>
@@ -84,7 +84,7 @@ const PaymentForm = ({
                                 }}
                             >
                                 <Button variant="outlined" onClick={backStep}>
-                                    Back
+                                    Trở về
                                 </Button>
                                 <Button
                                     type="submit"
@@ -92,7 +92,7 @@ const PaymentForm = ({
                                     disabled={!stripe}
                                     color="primary"
                                 >
-                                    Pay{" "}
+                                    Thanh toán{" "}
                                     {
                                         checkoutToken.live.subtotal
                                             .formatted_with_symbol
