@@ -1,20 +1,38 @@
 import React from "react";
-import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core';
+import {  Button, Typography, TextField } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { validateEmail, validate } from "../Validation/Validation";
+import { FlashMessage } from "../../components";
+import { sendPasswordResetEmail } from './../../firebase'
 
 
-import FormInput from '../CheckoutForm/CustomTextField';
+
 
 const Forgot = () => {
     const methods = useForm();
+    const [email, setEmail] = React.useState("");
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if(!validate()) return;
+        sendPasswordResetEmail(email);
+    }
     return (
         <div style={styles.div}>
             <Typography variant="h2" gutterBottom>Forgot</Typography>
             <FormProvider {...methods}>
-            <form style={styles.form}>
+            <form style={styles.form} onSubmit={(e) => handleSubmit(e)}>
 
-            <FormInput helperText="Email!" name="username" label="Email" />
+            <TextField
+                required
+                error={validateEmail(email)}
+                helperText={validateEmail(email)??false}
+                name="email"
+                label="Email"
+                value={email}
+                onChange={(e) => {
+                    setEmail(e.target.value);
+                }}
+            />
             
             <Button type="submit" variant="contained" color="primary" style={styles.button}>Submit</Button>
             

@@ -14,12 +14,15 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/commerce.png";
 import useStyles from "./styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { change_logout, } from "../../redux/ducks";
 
 const PrimarySearchAppBar = ({ totalItems }) => {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const classes = useStyles();
     const location = useLocation();
+
+    const dispatch = useDispatch();
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -155,6 +158,16 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                                 color="inherit"
                             >
                                 {name}
+                            </Typography>
+                            <Typography
+                                component={Link}
+                                onClick={()=> dispatch(change_logout())}
+                                to="/"
+                                variant="h6"
+                                className={classes.title}
+                                color="inherit"
+                            >
+                                (Logout)
                             </Typography>
                         </div>
                     )}

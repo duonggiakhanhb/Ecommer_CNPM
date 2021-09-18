@@ -28,13 +28,13 @@ const auth = getAuth();
 const db = getFirestore();
 
 const sendPasswordResetEmail = async (email) => {
-    try {
-        await auth.sendPasswordResetEmail(email);
-        alert("Password reset link sent!");
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
-    }
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            FlashMessage("Check link on your email", 5000, "/");
+        })
+        .catch((error) => {
+            FlashMessage(error, 5000, "/", "error");
+        });
 };
 
 const logout = () => {
