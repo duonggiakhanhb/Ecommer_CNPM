@@ -15,7 +15,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/commerce.png";
 import useStyles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
-import { change_logout } from "../../redux/ducks";
+import { change_logout, } from "../../redux/ducks";
 
 const PrimarySearchAppBar = ({ totalItems }) => {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -87,7 +87,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                             className={classes.title}
                             color="inherit"
                         >
-                            Sản phẩm
+                            Products
                         </Typography>
                         <Typography
                             component={Link}
@@ -120,35 +120,29 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                     {!isLogin && (
                         <div style={styles.FormLogin}>
                             <Typography
-                                style={{ padding: 5 }}
                                 component={Link}
                                 to="/login"
                                 variant="h6"
                                 className={classes.title}
-                                noWrap
                                 color="inherit"
                             >
-                                Đăng nhập
+                                Login
                             </Typography>
                             <Typography
-                                style={{ padding: 5 }}
                                 component={Link}
                                 to="/register"
                                 variant="h6"
                                 className={classes.title}
                                 color="inherit"
-                                noWrap
                             >
-                                Đăng kí
+                                Register
                             </Typography>
                             <Typography
-                                style={{ padding: 5 }}
                                 component={Link}
                                 to="/login"
                                 variant="h6"
                                 className={classes.title}
                                 color="inherit"
-                                noWrap
                             >
                                 {name}
                             </Typography>
@@ -157,8 +151,6 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                     {isLogin && (
                         <div style={styles.FormLogin}>
                             <Typography
-                                style={{ padding: 5 }}
-                                noWrap
                                 component={Link}
                                 to="/"
                                 variant="h6"
@@ -168,10 +160,8 @@ const PrimarySearchAppBar = ({ totalItems }) => {
                                 {name}
                             </Typography>
                             <Typography
-                                style={{ padding: 5 }}
-                                noWrap
                                 component={Link}
-                                onClick={() => dispatch(change_logout())}
+                                onClick={()=> dispatch(change_logout())}
                                 to="/"
                                 variant="h6"
                                 className={classes.title}

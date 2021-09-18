@@ -18,12 +18,7 @@ import {
 } from "../../firebase";
 import { FlashMessage } from "../../components";
 import { useDispatch } from "react-redux";
-import {
-    validatePassword,
-    validateEmail,
-    validateLenght,
-    validate,
-} from "../Validation/Validation";
+import { validatePassword, validateEmail, validateLenght, validate } from "../Validation/Validation";
 
 import {
     change_name,
@@ -31,6 +26,7 @@ import {
     change_uid,
     change_login,
 } from "../../redux/ducks";
+
 
 const Register = () => {
     const methods = useForm();
@@ -43,7 +39,7 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!validate()) return;
+        if(!validate()) return;
         console.log(name, email, password);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -88,7 +84,7 @@ const Register = () => {
                     <TextField
                         required
                         error={validateEmail(email)}
-                        helperText={validateEmail(email) ?? false}
+                        helperText={validateEmail(email)??false}
                         name="email"
                         label="Email"
                         value={email}
@@ -99,9 +95,9 @@ const Register = () => {
                     <TextField
                         required
                         error={validateLenght(password)}
-                        helperText={validateLenght(password) ?? false}
+                        helperText={validateLenght(password)??false}
                         name="password"
-                        label="Mật khẩu"
+                        label="Password"
                         value={password}
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
@@ -109,12 +105,10 @@ const Register = () => {
                     <TextField
                         required
                         error={validatePassword(password, rePassword)}
-                        helperText={
-                            validatePassword(password, rePassword) ?? false
-                        }
+                        helperText={validatePassword(password, rePassword)??false}
                         type="password"
                         name="password confirm"
-                        label="Nhập lại mật khẩu"
+                        label="Password Confirm"
                         value={rePassword}
                         onChange={(e) => setRePassword(e.target.value)}
                     />
@@ -126,7 +120,7 @@ const Register = () => {
                         color="primary"
                         style={styles.button}
                     >
-                        Đăng kí
+                        Register
                     </Button>
                 </form>
             </FormProvider>

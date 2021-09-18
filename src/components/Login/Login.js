@@ -49,7 +49,7 @@ const Login = () => {
     return (
         <div style={styles.div}>
             <Typography variant="h2" gutterBottom>
-                Đăng nhập
+                Login
             </Typography>
             <FormProvider {...methods}>
                 <form style={styles.form} onSubmit={(e) => handleSubmit(e)}>
@@ -65,7 +65,7 @@ const Login = () => {
                     <TextField
                         required
                         name="password"
-                        label="Mật khẩu"
+                        label="Password"
                         value={password}
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
@@ -78,11 +78,11 @@ const Login = () => {
                         color="primary"
                         style={styles.button}
                     >
-                        Đăng nhập
+                        Login
                     </Button>
                     <br />
                     <a href="/forgot" style={{ paddingTop: 10 }}>
-                        Quên mật khẩu
+                        Forgot Password
                     </a>
                 </form>
             </FormProvider>
