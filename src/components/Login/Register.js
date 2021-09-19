@@ -83,8 +83,7 @@ const Register = () => {
                     />
                     <TextField
                         required
-                        error={validateEmail(email)}
-                        helperText={validateEmail(email)??false}
+                        type="email"
                         name="email"
                         label="Email"
                         value={email}

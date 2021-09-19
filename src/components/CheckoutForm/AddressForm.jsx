@@ -102,6 +102,7 @@ const AddressForm = ({ checkoutToken, test }) => {
                         />
                         <FormInput
                             required
+                            type="email"
                             name="email"
                             label="Email"
                             value={email}
@@ -109,8 +110,10 @@ const AddressForm = ({ checkoutToken, test }) => {
                         <FormInput required name="city" label="City" />
                         <FormInput
                             required
+                            type="number"
                             name="zip"
                             label="Zip / Postal code"
+                            pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
                         />
                         <Grid item xs={12} sm={6}>
                             <InputLabel>Shipping Country</InputLabel>
